@@ -8,7 +8,11 @@
 #include <stdio.h>
 
 #include "domain/console/usart_printf.h"
-#include "domain/pin/pin.h"
+
+
+#include "domain/pin/pin_map.h"
+#include "domain/pin/form/pin_control_form.h"
+#include "domain/pin/service/pin_service_table.h"
 
 #define F_CPU       16000000L
 
@@ -20,15 +24,8 @@ void LED_Toggle(void)
     _delay_ms(500);
 }
 
-
-
-
 int main(void)
 {
-
-    // PB5 Is wired to LED.
-    // DDRB = 0x20;
-
     //  [DDD-PWM-6]
     //  TODO : Add USART0 Initialization for Putty Debug Message.
     usart_initialize();
@@ -36,10 +33,12 @@ int main(void)
 	_delay_ms(10);
 
     //  [DDD-PWM-0]
-    //  TODO : 핀 도메인에 원하는 핀의 설정을 요청한다.
-
-	request_pin_config(PIN_PB5, GPIO_SET_OUTPUT_MODE);
-
+    //  TODO : Developer can choose the pin to control.
+    //  [DDD-PWM-7]
+    //  TODO : Developer can choose the pin direction.
+    set_pin_control_form(PIN_PB5, PIN_OUTPUT_MODE);
+    pin_service_call_table[PIN_DIRECTION] ( 
+        convert_pin_control_data(pin_control_form) );
 
     for(;;)
     {

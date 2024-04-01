@@ -46,4 +46,11 @@ enum _PIN_OPS_MODE
     PIN_OUTPUT_MODE=1
 };
 
+typedef struct _pin_vo pin_vo;
+struct _pin_vo
+{
+	enum _PIN_MAP pin_map;
+	enum _PIN_OPS_MODE pin_io_mode;
+};
+
 #endif

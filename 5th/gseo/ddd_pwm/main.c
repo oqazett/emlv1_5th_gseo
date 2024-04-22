@@ -29,6 +29,11 @@ void LED_Toggle(void)
     _delay_ms(500);
 }
 
+void pwm_init(void)
+{
+    
+}
+
 int main(void)
 {
     //  [DDD-PWM-6]
@@ -46,6 +51,9 @@ int main(void)
     set_pin_control_form(PIN_PB5, PIN_OUTPUT_MODE);
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form) );
+    
+    // [DDD-PWM-1]
+    // TODO : Developers can set the PWM Mode.
 
     for(;;)
     {

@@ -4,13 +4,24 @@
     // [DDD-PWM-1]
     // TODO : Developer can setup the PWM mode.
 
+typedef enum _PWM_CHANNER PWM_CHANNER;
+enum _PWM_CHANNER
+{
+    PWM_CH0     =   0,
+    PWM_CH1     =   1,
+    PWM_CH2     =   2,
+
+    PWM_CH_END    
+};
+
+
 typedef enum _COMP_OUTPUT_MODE COMP_OUTPUT_MODE;
 enum _COMP_OUTPUT_MODE
 {
-    NORMAL_OPS      =   0,
-    TOGGLE_OCnx     =   1,
-    CLEAR_OCnx      =   2,
-    SET_OCnx        =   3,
+    COMP_OUTPUT_NORMAL_OPS      =   0,
+    COMP_OUTPUT_TOGGLE          =   1,
+    COMP_OUTPUT_CLEAR           =   2,
+    COMP_OUTPUT_SET             =   3,
     
     COMP_OUTPUT_MODE_END
 };

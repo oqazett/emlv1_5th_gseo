@@ -11,5 +11,6 @@ struct _pin_request
 
 struct _pin_request pin_request;
 struct _pin_request led_port_request;
+struct _pin_request pwm_port_request;
 
 #endif

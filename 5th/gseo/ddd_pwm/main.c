@@ -90,7 +90,7 @@ int main(void)
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form)
     );
-    set_pwm_control_form(COMP_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
+    set_pwm_control_form(PWM_CHANNEL0, COMPARE_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
     // pwm_service_call_table[COM_OUTPUT_MODE](
     //     convert_pwm_control_data(pwm_control_form) );
     // pwm_service_call_table[WAVE_GEN_MODE](

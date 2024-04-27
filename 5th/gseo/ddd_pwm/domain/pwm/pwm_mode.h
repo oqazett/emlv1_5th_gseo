@@ -4,55 +4,55 @@
     // [DDD-PWM-1]
     // TODO : Developer can setup the PWM mode.
 
-typedef enum _PWM_CHANNER PWM_CHANNER;
-enum _PWM_CHANNER
+typedef enum _PWM_CHANNEL PWM_CHANNEL;
+enum _PWM_CHANNEL
 {
-    PWM_CH0     =   0,
-    PWM_CH1     =   1,
-    PWM_CH2     =   2,
+    PWM_CHANNEL0     =   0x4,
+    PWM_CHANNEL1     =   0x8,
+    PWM_CHANNEL2     =   0Xb,
 
-    PWM_CH_END    
+    PWM_CHANNEL_END
 };
 
 
-typedef enum _COMP_OUTPUT_MODE COMP_OUTPUT_MODE;
-enum _COMP_OUTPUT_MODE
+typedef enum _COMPARE_OUTPUT_MODE COMPARE_OUTPUT_MODE;
+enum _COMPARE_OUTPUT_MODE
 {
-    COMP_OUTPUT_NORMAL_OPS      =   0,
-    COMP_OUTPUT_TOGGLE          =   1,
-    COMP_OUTPUT_CLEAR           =   2,
-    COMP_OUTPUT_SET             =   3,
+    COMPARE_OUTPUT_NORMAL_OPS      =   0,
+    COMPARE_OUTPUT_TOGGLE          =   1,
+    COMPARE_OUTPUT_CLEAR           =   2,
+    COMPARE_OUTPUT_SET             =   3,
     
-    COMP_OUTPUT_MODE_END
+    COMPARE_OUTPUT_MODE_END
 };
 
-typedef enum _WAVE_GEN_MODE WAVE_GEN_MODE;
-enum _WAVE_GEN_MODE
+typedef enum _WAVE_GENERATION_MODE WAVE_GENERATION_MODE;
+enum _WAVE_GENERATION_MODE
 {
-    NORMAL_0xFF         =   0,
-    PHASE_CORRECT_OxFF  =   1,
-    CTC_OCRA            =   2,
-    FAST_PWM_OxFF       =   3,
-    RESERVED_0          =   4,
-    PHASE_CORRECT_OCRA  =   5,
-    RESERVED_1          =   6,
-    FAST_PWM_OCRA       =   7,
+    NORMAL_0xFF                         =   0,
+    PHASE_CORRECT_OxFF                  =   1,
+    CLEAR_TIME_ON_COMPARE_MATCH_OCRx    =   2,
+    FAST_PWM_OxFF                       =   3,
+    RESERVED_0                          =   4,
+    PHASE_CORRECT_OCRx                  =   5,
+    RESERVED_1                          =   6,
+    FAST_PWM_OCRx                       =   7,
 
-    WAVE_GEN_MODE_END
+    WAVE_GENERATION_MODE_END
 };
 
-typedef enum _CLK_SELECT_BIT CLK_SELECT_BIT;
-enum _CLK_SELECT_BIT
+typedef enum _PRESCALE_SELECT_BIT PRESCALE_SELECT_BIT;
+enum _PRESCALE_SELECT_BIT
 {
-    NO_CLOCK_SRC        =   0,
-    PWM_PRESCALE_1      =   1,
-    PWM_PRESCALE_8      =   2,
-    PWM_PRESCALE_64     =   3,
-    PWM_PRESCALE_256    =   4,
-    PWM_PRESCALE_1024   =   5,
-    PWM_EXT_CLK_T0_RIS  =   6,
-    PWM_EXT_CLK_T0_FAL  =   7,
+    NO_CLOCK_SOURCE                 =   0,
+    PWM_PRESCALE_1                  =   1,
+    PWM_PRESCALE_8                  =   2,
+    PWM_PRESCALE_64                 =   3,
+    PWM_PRESCALE_256                =   4,
+    PWM_PRESCALE_1024               =   5,
+    PWM_EXTERNAL_PRESCALE_T0_RIS    =   6,
+    PWM_EXTERNAL_PRESCALE_T0_FAL    =   7,
 
-    CLK_SELECT_BIT_END
+    PRESCALE_SELECT_BIT_END
 };
 #endif

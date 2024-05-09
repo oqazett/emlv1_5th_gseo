@@ -65,8 +65,10 @@ int main(void)
     stdout = &uart_output;
 	_delay_ms(10);
 
-    printf("The PWM based on domain driven design\r\n");
-    printf("Chipset : ATmega328p\r\n");
+    printf("1. Project Name    : DDD-PWM\r\n");
+    printf("2. Chipset         : ATmega328p\r\n");
+    printf("3. Peripheral      : PWM\r\n");
+    printf("4. Software Design : Domain-Driven Design.\r\n");
     //  [DDD-PWM-0]
     //  TODO : Developer can choose the pin to control.
     //  [DDD-PWM-7]
@@ -90,7 +92,9 @@ int main(void)
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form)
     );
-    set_pwm_control_form(PWM_CHANNEL0, COMPARE_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
+    set_pwm_control_form(PWM_CHANNEL_OC0A, COMPARE_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
+    struct _pwm_request test_pwm_form;
+    test_pwm_form = convert_pwm_control_data(pwm_control_form);\
     // pwm_service_call_table[COM_OUTPUT_MODE](
     //     convert_pwm_control_data(pwm_control_form) );
     // pwm_service_call_table[WAVE_GEN_MODE](

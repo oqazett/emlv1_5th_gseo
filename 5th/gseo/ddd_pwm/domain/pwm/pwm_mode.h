@@ -7,9 +7,12 @@
 typedef enum _PWM_CHANNEL PWM_CHANNEL;
 enum _PWM_CHANNEL
 {
-    PWM_CHANNEL0     =   0x4,
-    PWM_CHANNEL1     =   0x8,
-    PWM_CHANNEL2     =   0Xb,
+    PWM_CHANNEL_OC0A       =   0,
+    PWM_CHANNEL_OC0B       =   1,         
+    PWM_CHANNEL_OC1A       =   2,
+    PWM_CHANNEL_OC1B       =   3,
+    PWM_CHANNEL_OC2A       =   4,
+    PWM_CHANNEL_OC2B       =   5,
 
     PWM_CHANNEL_END
 };
@@ -18,7 +21,7 @@ enum _PWM_CHANNEL
 typedef enum _COMPARE_OUTPUT_MODE COMPARE_OUTPUT_MODE;
 enum _COMPARE_OUTPUT_MODE
 {
-    COMPARE_OUTPUT_NORMAL_OPS      =   0,
+    COMPARE_OUTPUT_NORMAL          =   0,
     COMPARE_OUTPUT_TOGGLE          =   1,
     COMPARE_OUTPUT_CLEAR           =   2,
     COMPARE_OUTPUT_SET             =   3,

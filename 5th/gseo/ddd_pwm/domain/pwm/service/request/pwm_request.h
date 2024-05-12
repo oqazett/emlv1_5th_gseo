@@ -11,6 +11,6 @@ struct _pwm_request
     uint8_t pwm_prescale_value;
 };
 
-struct _pwm_request pwm_port_request;
+struct _pwm_request pwm_request;
 
 #endif

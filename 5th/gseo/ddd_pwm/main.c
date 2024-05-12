@@ -21,6 +21,7 @@
 #include "domain/pin/service/pin_service_table.h"
 
 #include "domain/pwm/form/pwm_control_form.h"
+#include "domain/pwm/service/pwm_service_table.h"
 
 #define F_CPU       16000000L
 
@@ -65,17 +66,15 @@ int main(void)
     stdout = &uart_output;
 	_delay_ms(10);
 
-    printf("1. Project Name    : DDD-PWM\r\n");
+    printf("\n Eddi Robot Academy's Embedded Master LV.1\n1. Project Name    : DDD-PWM\r\n");
     printf("2. Chipset         : ATmega328p\r\n");
     printf("3. Peripheral      : PWM\r\n");
-    printf("4. Software Design : Domain-Driven Design.\r\n");
+    printf("4. Software Design : Domain-Driven Design.\r\n\n");
     //  [DDD-PWM-0]
     //  TODO : Developer can choose the pin to control.
     //  [DDD-PWM-7]
     //  TODO : Developer can choose the pin direction.
-    set_pin_control_form(PIN_PB5, PIN_OUTPUT_MODE);
-    pin_service_call_table[PIN_DIRECTION] (
-        convert_pin_control_data(pin_control_form) );
+
 #if 0 
     TCCR0A = 0x00; // 노멀모드 초기화 
     TCCR0B = 0x03; //분주비 64
@@ -92,29 +91,39 @@ int main(void)
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form)
     );
-    set_pwm_control_form(PWM_CHANNEL_OC0A, COMPARE_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
-    struct _pwm_request test_pwm_form;
-    test_pwm_form = convert_pwm_control_data(pwm_control_form);\
-    // pwm_service_call_table[COM_OUTPUT_MODE](
+
+    
+    // set_pwm_control_form(PWM_CHANNEL_OC0A, COMPARE_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
+    // pwm_service_call_table[PWM_COMPARE_OUTPUT_MODE](
     //     convert_pwm_control_data(pwm_control_form) );
+
     // pwm_service_call_table[WAVE_GEN_MODE](
     //     convert_pwm_control_data(pwm_control_form) );
     // pwm_service_call_table[PRESCALE](
     //     convert_pwm_control_data(pwm_control_form) );
 
+    //  [DDD-PWM-0]
+    //  TODO : Developer can choose the pin to control.
+    //  [DDD-PWM-7]
+    //  TODO : Developer can choose the pin direction.
+    set_pin_control_form(PIN_PB5, PIN_OUTPUT_MODE);
+    pin_service_call_table[PIN_DIRECTION] (
+        convert_pin_control_data(pin_control_form) );
+
+
     for(;;)
     {
         // [DDD-PWM-8]
         //  TODO : Developer can change status of LED.
-
-		// set_led_control_form(LED_STATUS_OFF);
-		// led_service_call_table[LED_OFF](
-        //     convert_led_control_data(led_control_form));
-        // _delay_ms(500);
-        // set_led_control_form(LED_STATUS_ON);
-		// led_service_call_table[LED_ON](
-        //     convert_led_control_data(led_control_form));
-        // _delay_ms(500);
+        
+		set_led_control_form(LED_STATUS_OFF);
+		led_service_call_table[LED_OFF](
+            convert_led_control_data(led_control_form));
+        _delay_ms(500);
+        set_led_control_form(LED_STATUS_ON);
+		led_service_call_table[LED_ON](
+            convert_led_control_data(led_control_form));
+        _delay_ms(500);
 
 	}
 

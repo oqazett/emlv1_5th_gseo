@@ -13,10 +13,10 @@ void set_pwm_control_form(PWM_CHANNEL pwm_channel, COMPARE_OUTPUT_MODE compare_o
 struct _pwm_request convert_pwm_control_data(struct _pwm_control_form pwm_control_form)
 {
     pwm_request.pwm_channel_address = pwm_map_address_vo[pwm_control_form.pwm_channel];
-    pwm_request.compare_output_value = (pwm_control_form.compare_output_mode<<(6-((pwm_control_form.pwm_channel&0x1)*2)));
+    pwm_request.compare_output_value = (pwm_control_form.compare_output_mode<<COMPARE_OUTPUT_BIT_SHIFT);
     
     if(pwm_request.pwm_channel_address==0x80){ // 16-bit Timer/Counter 1
-        
+        /* TBD */
     }
     else{   // 8-bit Timer/Counter 0,2          bit3=WGM2, bit1=WGM1, bit0=WGM0
         pwm_request.wave_generation_value = (

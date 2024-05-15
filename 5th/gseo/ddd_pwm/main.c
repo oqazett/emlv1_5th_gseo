@@ -84,7 +84,7 @@ int main(void)
 #endif
     // [DDD-PWM-1]
     // TODO : Developers can set the PWM Mode.
-    // [DDD-PWM-9]
+    // [DDD-PWM-7]
     // TODO : Timer/Counter0,1,2 Select
 
     set_pin_control_form(PIN_PD6, PIN_OUTPUT_MODE);
@@ -92,15 +92,16 @@ int main(void)
         convert_pin_control_data(pin_control_form)
     );
 
-    
-    // set_pwm_control_form(PWM_CHANNEL_OC0A, COMPARE_OUTPUT_CLEAR, FAST_PWM_OxFF, PWM_PRESCALE_64);
-    // pwm_service_call_table[PWM_COMPARE_OUTPUT_MODE](
-    //     convert_pwm_control_data(pwm_control_form) );
-
-    // pwm_service_call_table[WAVE_GEN_MODE](
-    //     convert_pwm_control_data(pwm_control_form) );
+    // [DDD-PWM-3]
+    // TODO : Developers choose specification of Timer/Counter
+    set_pwm_control_form(PWM_CHANNEL_OC0A, COMPARE_OUTPUT_SET, FAST_PWM_OCRx, PWM_PRESCALE_64);
+    pwm_service_call_table[PWM_COMPARE_OUTPUT_MODE](
+        convert_pwm_control_data(pwm_control_form) );
+    pwm_service_call_table[PWM_WAVE_GENERATION_MODE](
+        convert_pwm_control_data(pwm_control_form) );
     // pwm_service_call_table[PRESCALE](
     //     convert_pwm_control_data(pwm_control_form) );
+
 
     //  [DDD-PWM-0]
     //  TODO : Developer can choose the pin to control.

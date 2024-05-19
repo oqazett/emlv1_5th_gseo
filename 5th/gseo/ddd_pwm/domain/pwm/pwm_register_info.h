@@ -7,12 +7,12 @@
 typedef enum _PWM_CHANNEL PWM_CHANNEL;
 enum _PWM_CHANNEL
 {
-    PWM_CHANNEL_OC0A       =   0,
-    PWM_CHANNEL_OC0B       =   1,         
-    PWM_CHANNEL_OC1A       =   2,
-    PWM_CHANNEL_OC1B       =   3,
-    PWM_CHANNEL_OC2A       =   4,
-    PWM_CHANNEL_OC2B       =   5,
+    PWM_CHANNEL_OC0A       =   0x40,
+    PWM_CHANNEL_OC0B       =   0x40,         
+    PWM_CHANNEL_OC1A       =   0x80,
+    PWM_CHANNEL_OC1B       =   0x80,
+    PWM_CHANNEL_OC2A       =   0xB0,
+    PWM_CHANNEL_OC2B       =   0xB0,
 
     PWM_CHANNEL_END
 };

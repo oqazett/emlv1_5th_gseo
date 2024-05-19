@@ -24,7 +24,7 @@ void clear_wave_generation_bits(void){
     }
     else{
         (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) &= 0xf0;
-(*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf7;
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf7;
     }
 }
 
@@ -46,7 +46,7 @@ void set_compare_output_mode(struct _pwm_request pwm_request)
 
 void set_wave_generation_mode(struct _pwm_request pwm_request)
 {
-    
+    clear_wave_generation_bits();
 }
 
 void set_prescale(struct _pwm_request pwm_request)

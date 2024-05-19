@@ -1,7 +1,7 @@
 #ifndef __PWM_CONTROL_FORM_H__
 #define __PWM_CONTROL_FORM_H__
 
-#include "../pwm_mode.h"
+#include "../pwm_register_info.h"
 #include "../service/request/pwm_request.h"
 
 struct _pwm_control_form

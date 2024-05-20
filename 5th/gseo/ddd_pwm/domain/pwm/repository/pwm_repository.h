@@ -10,8 +10,9 @@ enum _pwm_domain_repository{
     PWM_REPOSITORY_END
 };
 
-void clear_compare_output_bits(void);
-void clear_wave_generation_bits(void);
+void clear_compare_output_bits(struct _pwm_request);
+void clear_wave_generation_bits(struct _pwm_request);
+void set_timer_counter_register_address_lower_4bits(struct _pwm_request);
 
 
 void set_compare_output_mode (struct _pwm_request);

@@ -4,7 +4,9 @@
     // [DDD-PWM-1]
     // TODO : Developer can setup the PWM mode.
 
-typedef enum _PWM_CHANNEL PWM_CHANNEL;
+#define DEBUG_MESSAGE   1
+
+typedef enum _PWM_CHANNEL PWM_CHANNEL_ADDRESS;
 enum _PWM_CHANNEL
 {
     PWM_CHANNEL_OC0A       =   0x40,

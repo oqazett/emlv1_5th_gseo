@@ -6,7 +6,7 @@
 
 struct _pwm_control_form
 {
-    PWM_CHANNEL pwm_channel;
+    PWM_CHANNEL_ADDRESS pwm_channel_address;
     COMPARE_OUTPUT_MODE compare_output_mode;
     WAVE_GENERATION_MODE  wave_generation_mode;
     PRESCALE_SELECT_BIT pwm_prescale;
@@ -14,9 +14,9 @@ struct _pwm_control_form
 
 struct _pwm_control_form pwm_control_form;
 
-void set_pwm_control_form(PWM_CHANNEL pwm_channel, COMPARE_OUTPUT_MODE com_output_mode, WAVE_GENERATION_MODE wave_gen_mode, PRESCALE_SELECT_BIT pwm_prescale);
+void set_pwm_control_form(PWM_CHANNEL_ADDRESS pwm_channel_address, COMPARE_OUTPUT_MODE com_output_mode, WAVE_GENERATION_MODE wave_gen_mode, PRESCALE_SELECT_BIT pwm_prescale);
 struct _pwm_request convert_pwm_control_data(struct _pwm_control_form pwm_control_form);
 
-#define COMPARE_OUTPUT_BIT_SHIFT    (6-((pwm_control_form.pwm_channel&0x1)*2))
+#define COMPARE_OUTPUT_BIT_SHIFT    (6-((pwm_control_form.pwm_channel_address&0x1)*2))
 
 #endif

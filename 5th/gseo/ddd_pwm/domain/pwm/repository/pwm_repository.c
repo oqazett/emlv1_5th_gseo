@@ -33,6 +33,20 @@ void clear_wave_generation_bits(struct _pwm_request pwm_request){
     }
 }
 
+void clear_prescale_bits(struct _pwm_request pwm_request){
+    if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC0B){
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) &= 0xf0;
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf7;
+    }
+    else if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC1B){
+        /* TBD */
+    }
+    else{
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) &= 0xf0;
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf7;
+    }
+}
+
 void set_compare_output_mode(struct _pwm_request pwm_request)
 {
     set_timer_counter_register_address_lower_4bits(pwm_request);
@@ -54,11 +68,18 @@ void set_wave_generation_mode(struct _pwm_request pwm_request)
     set_timer_counter_register_address_lower_4bits(pwm_request);
     clear_wave_generation_bits(pwm_request);
 
-    (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) |= (pwm_request.wave_generation_value&0x3);
-    (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) |= ((pwm_request.wave_generation_value&0x4)<<1);
+    if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC0B){
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) |= (pwm_request.wave_generation_value&0x3);
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) |= ((pwm_request.wave_generation_value&0x4)<<1);
+    }else if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC1B){
 
+    }
+    else{
+
+    }
+    
 #if DEBUG_MESSAGE    
-    printf("[PWM REPOSITORY] - Compare Output Mode\n");
+    printf("[PWM REPOSITORY] - Wave Generation Mode\n");
     printf("pwm_channer_address = 0x%x\n", pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS);
     printf("TCCR0A = 0x%x\n", TCCR0A);
     printf("TCCR0B = 0x%x\n", TCCR0B);
@@ -67,5 +88,20 @@ void set_wave_generation_mode(struct _pwm_request pwm_request)
 
 void set_prescale(struct _pwm_request pwm_request)
 {
+    set_timer_counter_register_address_lower_4bits(pwm_request);
+    clear_prescale_bits(pwm_request);
+    if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC0B){
+    }
+    else if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC1B){
+
+    }
+    else{
+
+    }
     
+    #if DEBUG_MESSAGE    
+    printf("[PWM REPOSITORY] - Prescale Mode\n");
+    printf("pwm_channer_address = 0x%x\n", pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS);
+    printf("TCCR0B = 0x%x\n", TCCR0B);
+#endif
 }

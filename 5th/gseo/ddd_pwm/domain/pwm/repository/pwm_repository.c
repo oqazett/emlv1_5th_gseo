@@ -35,15 +35,13 @@ void clear_wave_generation_bits(struct _pwm_request pwm_request){
 
 void clear_prescale_bits(struct _pwm_request pwm_request){
     if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC0B){
-        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) &= 0xf0;
-        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf7;
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf8;
     }
     else if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC1B){
         /* TBD */
     }
     else{
-        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS)) &= 0xf0;
-        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf7;
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) &= 0xf8;
     }
 }
 
@@ -91,12 +89,13 @@ void set_prescale(struct _pwm_request pwm_request)
     set_timer_counter_register_address_lower_4bits(pwm_request);
     clear_prescale_bits(pwm_request);
     if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC0B){
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) |= pwm_request.pwm_prescale_value;
     }
     else if(pwm_request.pwm_channel_address<=(volatile unsigned char *)PWM_CHANNEL_OC1B){
 
     }
     else{
-
+        (*((volatile unsigned char *)pwm_request.pwm_channel_address + TCCRnx_LOWER_4BITS_ADDRESS + 0x1)) |= pwm_request.pwm_prescale_value;
     }
     
     #if DEBUG_MESSAGE    

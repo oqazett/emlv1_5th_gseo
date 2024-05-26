@@ -19,5 +19,5 @@ void pwm_service_wave_generation_mode (struct _pwm_request pwm_request)
 void pwm_service_prescale (struct _pwm_request pwm_request)
 {
     printf("\npwm domain service : pwm prescale\n");
-    //  pwm_repository_call_table[SET_PRESCALE](pwm_port_request);
+    pwm_repository_call_table[SET_PRESCALE](pwm_request);
 }

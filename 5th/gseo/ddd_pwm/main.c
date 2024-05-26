@@ -99,8 +99,8 @@ int main(void)
         convert_pwm_control_data(pwm_control_form) );
     pwm_service_call_table[PWM_WAVE_GENERATION_MODE](
         convert_pwm_control_data(pwm_control_form) );
-    // pwm_service_call_table[PRESCALE](
-    //     convert_pwm_control_data(pwm_control_form) );
+    pwm_service_call_table[PWM_PRESCALE](
+        convert_pwm_control_data(pwm_control_form) );
 
 
     //  [DDD-PWM-0]

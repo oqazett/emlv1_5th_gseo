@@ -17,7 +17,7 @@ struct _pwm_request convert_pwm_control_data(struct _pwm_control_form pwm_contro
     pwm_request.wave_generation_value = pwm_control_form.wave_generation_mode;
     pwm_request.pwm_prescale_value = pwm_control_form.pwm_prescale;
 
-#if DEBUG_MESSAGE
+#if 0
     printf("pwm_channel_address = 0x%x\n",pwm_request.pwm_channel_address);
     printf("compare_output_value = 0x%x\n",pwm_request.compare_output_value);
     printf("wave_generation_value = 0x%x\n",pwm_request.wave_generation_value);

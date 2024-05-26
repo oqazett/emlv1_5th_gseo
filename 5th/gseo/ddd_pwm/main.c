@@ -38,25 +38,25 @@ void pwm_init(void)
     
 }
 
-// volatile int x = 0;
-// ISR(TIMER0_OVF_vect)
-// {
-//     x++;
-//     if(x<=999){
-//         set_led_control_form(LED_STATUS_ON);
-// 		led_service_call_table[LED_ON](
-//             convert_led_control_data(led_control_form));
-//     }
-//     else if(x>999 && x<2000)
-//     {
-//         set_led_control_form(LED_STATUS_OFF);
-// 		led_service_call_table[LED_OFF](
-//             convert_led_control_data(led_control_form));
-//     }
-//     else{
-//         x=0;
-//     }
-// }
+volatile int x = 0;
+ISR(TIMER0_OVF_vect)
+{
+    x++;
+    if(x<=999){
+        set_led_control_form(LED_STATUS_ON);
+		led_service_call_table[LED_ON](
+            convert_led_control_data(led_control_form));
+    }
+    else if(x>999 && x<2000)
+    {
+        set_led_control_form(LED_STATUS_OFF);
+		led_service_call_table[LED_OFF](
+            convert_led_control_data(led_control_form));
+    }
+    else{
+        x=0;
+    }
+}
 
 int main(void)
 {
@@ -111,21 +111,24 @@ int main(void)
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form) );
 
+    TIMSK0 = 0x01; // overflow 인터럽트 발생가능
+    OCR0A = 0xff;
+    sei(); // 인터럽트 사용
+
 
     for(;;)
     {
         // [DDD-PWM-8]
         //  TODO : Developer can change status of LED.
         
-		set_led_control_form(LED_STATUS_OFF);
-		led_service_call_table[LED_OFF](
-            convert_led_control_data(led_control_form));
-        _delay_ms(500);
-        set_led_control_form(LED_STATUS_ON);
-		led_service_call_table[LED_ON](
-            convert_led_control_data(led_control_form));
-        _delay_ms(500);
-
+		// set_led_control_form(LED_STATUS_OFF);
+		// led_service_call_table[LED_OFF](
+        //     convert_led_control_data(led_control_form));
+        // _delay_ms(500);
+        // set_led_control_form(LED_STATUS_ON);
+		// led_service_call_table[LED_ON](
+        //     convert_led_control_data(led_control_form));
+        // _delay_ms(500);
 	}
 
     return 0;

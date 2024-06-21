@@ -4,20 +4,8 @@
 #include "../repository/pwm_repository_table.h"
 
 
-void pwm_service_compare_output_mode (struct _pwm_request pwm_request)
+void rotate_servo_90_degrees (struct _pwm_request pwm_request)
 {
-    printf("\n[PWM SERVICE] - Compare Output Mode\n");
-    pwm_repository_call_table[SET_COMPARE_OUTPUT_MODE](pwm_request);
-}
-
-void pwm_service_wave_generation_mode (struct _pwm_request pwm_request)
-{
-    printf("\n[PWM SERVICE] - Wave Generation Mode\n");
-    pwm_repository_call_table[SET_WAVE_GENERATION_MODE](pwm_request);
-}
-
-void pwm_service_prescale (struct _pwm_request pwm_request)
-{
-    printf("\npwm domain service : pwm prescale\n");
-    pwm_repository_call_table[SET_PRESCALE](pwm_request);
+    printf("\n ROTATE THE SERVO MOTOR 90 DEGREES\n");
+    pwm_repository_call_table[SET_ROTATE_SERVO_90_DEGREES](pwm_request);
 }

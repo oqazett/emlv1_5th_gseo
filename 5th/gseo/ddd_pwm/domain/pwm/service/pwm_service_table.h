@@ -6,9 +6,7 @@
 typedef void (* pwm_service_call_ptr_t) (struct _pwm_request);
 
 const pwm_service_call_ptr_t pwm_service_call_table[] = {
-    pwm_service_compare_output_mode,
-    pwm_service_wave_generation_mode,
-    pwm_service_prescale
+    rotate_servo_90_degrees
 };
 
 #endif

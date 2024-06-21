@@ -24,13 +24,6 @@
 
 #define F_CPU       16000000L
 
-void LED_Toggle(void)
-{
-    PORTB = 0x00;
-    _delay_ms(500);
-    PORTB = 0x20;
-    _delay_ms(500);
-}
 
 /* BASIC SERVO MOTOR TEST */
 #if 0
@@ -120,6 +113,11 @@ int main(void)
     pwm_service_call_table[ROTATE_SERVO_90_DEGREES](
         convert_pwm_control_data(pwm_control_form)
     );
+
+    set_pin_control_form(PIN_PB1, PIN_OUTPUT_MODE);
+    pin_service_call_table[PIN_DIRECTION] (
+        convert_pin_control_data(pin_control_form)
+    );
 #endif
 
     // INIT_TIMER();
@@ -150,7 +148,11 @@ int main(void)
         //     OCR1A = j;
         //     _delay_ms(10);
         // }
-
+        
+        OCR1A = 1000;
+        _delay_ms(1000);
+        OCR1A = 3000;
+        _delay_ms(1000);
 	}
 
 }

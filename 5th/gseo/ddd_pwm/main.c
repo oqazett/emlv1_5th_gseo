@@ -111,7 +111,8 @@ int main(void)
 /* 240621 Code Revision */
 #if 1
     // [DDD-PWM-9]
-    // TODO : 50Hz 주기의 PWM 파형에 대한 셋팅 정보를 저장할 control form을 공간을 만든다.
+    // TODO : control form에 50Hz PWM 파형을 생성하기 위한 
+    //        compare output mode, wave generation mode, precale 정보를 전달한다.
     set_pwm_control_form(NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, PRESCALE_8);
 
 #endif

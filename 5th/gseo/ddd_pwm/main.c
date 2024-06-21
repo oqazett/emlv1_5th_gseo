@@ -114,7 +114,12 @@ int main(void)
     // TODO : control form에 50Hz PWM 파형을 생성하기 위한 
     //        compare output mode, wave generation mode, precale 정보를 전달한다.
     set_pwm_control_form(NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, PRESCALE_8);
-
+    
+    // [DDD-PWM-8]
+    // TODO : 서보모터의 각도를 90도 회전하는 명령을 PWM Service에 요청한다.
+    pwm_service_call_table[ROTATE_SERVO_90_DEGREES](
+        convert_pwm_control_data(pwm_control_form)
+    );
 #endif
 
     // INIT_TIMER();

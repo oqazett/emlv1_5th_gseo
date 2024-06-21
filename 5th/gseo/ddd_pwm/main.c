@@ -1,6 +1,5 @@
 /*
  */
-
 #include <avr/io.h>
 #include <avr/sfr_defs.h>
 #include <avr/interrupt.h>
@@ -33,30 +32,21 @@ void LED_Toggle(void)
     _delay_ms(500);
 }
 
-void pwm_init(void)
-{
-    
-}
+/* BASIC SERVO MOTOR TEST */
+#if 0
+#define PULSE_MIN 1000 //최소 펄스 지정
+#define PULSE_MAX 5000 //최대 펄스 지정
 
-volatile int x = 0;
-ISR(TIMER0_OVF_vect)
+void INIT_TIMER(void)
 {
-    x++;
-    if(x<=999){
-        set_led_control_form(LED_STATUS_ON);
-		led_service_call_table[LED_ON](
-            convert_led_control_data(led_control_form));
-    }
-    else if(x>999 && x<2000)
-    {
-        set_led_control_form(LED_STATUS_OFF);
-		led_service_call_table[LED_OFF](
-            convert_led_control_data(led_control_form));
-    }
-    else{
-        x=0;
-    }
+  TCCR1A |= (1<<WGM11);
+  TCCR1B |= (1<<WGM12) | (1<<WGM13); //고속 PWM 모드, TOP : ICR1
+  TCCR1B |= (1<<CS11); //분주율 8, 2MHz
+  ICR1 = 40000; //20ms주기
+  TCCR1A |= (1<<COM1A1); //비반전 모드
+  DDRB |= (1<<PB1); //디지털 9번 핀
 }
+#endif
 
 int main(void)
 {
@@ -75,8 +65,8 @@ int main(void)
     //  [DDD-PWM-7]
     //  TODO : Developer can choose the pin direction.
 
-#if 0 
-    TCCR0A = 0x00; // 노멀모드 초기화 
+#if 0
+    TCCR0A = 0x00; // 노멀모드 초기화
     TCCR0B = 0x03; //분주비 64
     TCNT0 = 250;
     TIMSK0 = 0x01; // overflow 인터럽트 발생가능
@@ -87,6 +77,8 @@ int main(void)
     // [DDD-PWM-7]
     // TODO : Timer/Counter0,1,2 Select
 
+// 240619 22:11
+#if 0
     set_pin_control_form(PIN_PD6, PIN_OUTPUT_MODE);
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form)
@@ -114,13 +106,24 @@ int main(void)
     TIMSK0 = 0x01; // overflow 인터럽트 발생가능
     OCR0A = 0xff;
     sei(); // 인터럽트 사용
+#endif   
 
+/* 240621 Code Revision */
+#if 1
+    // [DDD-PWM-9]
+    // TODO : 50Hz 주기의 PWM 파형에 대한 셋팅 정보를 저장할 control form을 공간을 만든다.
+    set_pwm_control_form(NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, PRESCALE_8);
+
+#endif
+
+    // INIT_TIMER();
+    int i, j = 0;
 
     for(;;)
     {
         // [DDD-PWM-8]
         //  TODO : Developer can change status of LED.
-        
+
 		// set_led_control_form(LED_STATUS_OFF);
 		// led_service_call_table[LED_OFF](
         //     convert_led_control_data(led_control_form));
@@ -129,7 +132,19 @@ int main(void)
 		// led_service_call_table[LED_ON](
         //     convert_led_control_data(led_control_form));
         // _delay_ms(500);
+
+        /**************************************/
+        // for(i=PULSE_MIN; i<=PULSE_MAX; i+=20)
+        // {
+        //     OCR1A = i;
+        //     _delay_ms(10);
+        // }
+        // for(j=PULSE_MAX; j>=PULSE_MIN; j-=20)
+        // {
+        //     OCR1A = j;
+        //     _delay_ms(10);
+        // }
+
 	}
 
-    return 0;
 }

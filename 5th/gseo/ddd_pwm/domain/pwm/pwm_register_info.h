@@ -20,43 +20,51 @@ enum _PWM_CHANNEL
 };
 
 
-typedef enum _COMPARE_OUTPUT_MODE COMPARE_OUTPUT_MODE;
-enum _COMPARE_OUTPUT_MODE
+typedef enum _TC16_COMPARE_OUTPUT_MODE TC16_COMPARE_OUTPUT_MODE;
+enum _TC16_COMPARE_OUTPUT_MODE
 {
-    COMPARE_OUTPUT_NORMAL          =   0,
-    COMPARE_OUTPUT_TOGGLE          =   1,
-    COMPARE_OUTPUT_CLEAR           =   2,
-    COMPARE_OUTPUT_SET             =   3,
+    NORMAL_PORT_OPERATION          =   0,
+    TOGGLE_ON_MATCH_NORMAL         =   1,
+    NON_INVERTING_MODE             =   2,
+    INVERTING_MODE                 =   3,
     
     COMPARE_OUTPUT_MODE_END
 };
 
-typedef enum _WAVE_GENERATION_MODE WAVE_GENERATION_MODE;
-enum _WAVE_GENERATION_MODE
+typedef enum _TC16_WAVE_GENERATION_MODE TC16_WAVE_GENERATION_MODE;
+enum _TC16_WAVE_GENERATION_MODE
 {
-    NORMAL_0xFF                         =   0,
-    PHASE_CORRECT_OxFF                  =   1,
-    CLEAR_TIME_ON_COMPARE_MATCH_OCRx    =   2,
-    FAST_PWM_OxFF                       =   3,
-    RESERVED_0                          =   4,
-    PHASE_CORRECT_OCRx                  =   5,
-    RESERVED_1                          =   6,
-    FAST_PWM_OCRx                       =   7,
+    NORMAL_TOP_0xFFFF                   =   0,
+    PHASE_CORRECT_8BIT_TOP_0x00FF       =   1,
+    PHASE_CORRECT_9BIT_TOP_0x01FF       =   2,
+    PHASE_CORRECT_10BIT_TOP_0x01FF      =   3,
+    CTC_TOP_OCR1A                       =   4,
+    FAST_PWM_8BIT_TOP_0x00FF            =   5,
+    FAST_PWM_9BIT_TOP_0x01FF            =   6,
+    FAST_PWM_10BIT_TOP_0x03FF           =   7,
+    PHASE_AND_FREQ_CORRECT_TOP_ICR1     =   8,
+    PHASE_AND_FREQ_CORRECT_TOP_OCR1A    =   9,
+    PHASE_CORRECT_TOP_ICR1              =   10,
+    PHASE_CORRECT_TOP_OCR1A             =   11,
+    CTC_TOP_ICR1                        =   12,
+    RESERVED                            =   13,
+    FAST_PWM_TOP_ICR1                   =   14,
+    FAST_PWM_TOP_OCR1A                  =   15,   
 
     WAVE_GENERATION_MODE_END
 };
 
-typedef enum _PRESCALE_SELECT_BIT PRESCALE_SELECT_BIT;
-enum _PRESCALE_SELECT_BIT
+typedef enum _SELECT_PRESCALE_VALUE SELECT_PRESCALE_VALUE;
+enum _SELECT_PRESCALE_VALUE
 {
-    NO_CLOCK_SOURCE                 =   0,
-    PWM_PRESCALE_1                  =   1,
-    PWM_PRESCALE_8                  =   2,
-    PWM_PRESCALE_64                 =   3,
-    PWM_PRESCALE_256                =   4,
-    PWM_PRESCALE_1024               =   5,
-    PWM_EXTERNAL_PRESCALE_T0_RIS    =   6,
-    PWM_EXTERNAL_PRESCALE_T0_FAL    =   7,
+    NO_CLOCK_SOURCE                        =   0,
+    PRESCALE_1                          =   1,
+    PRESCALE_8                          =   2,
+    PRESCALE_64                         =   3,
+    PRESCALE_256                        =   4,
+    PRESCALE_1024                       =   5,
+    EXTERNAL_CLOCK_SOURCE_T1_RISISNG    =   6,
+    EXTERNAL_CLOCK_SOURCE_T1_FALLING    =   7,
 
     PRESCALE_SELECT_BIT_END
 };

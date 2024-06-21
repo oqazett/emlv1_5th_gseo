@@ -2,9 +2,10 @@
 #include "../../pin/global_pin_map.h"
 #include <stdio.h>
 
-void set_pwm_control_form(PWM_CHANNEL_ADDRESS pwm_channel_address, COMPARE_OUTPUT_MODE compare_output_mode, WAVE_GENERATION_MODE wave_generation_mode, PRESCALE_SELECT_BIT pwm_prescale)
+void set_pwm_control_form(TC16_COMPARE_OUTPUT_MODE compare_output_mode, TC16_WAVE_GENERATION_MODE wave_generation_mode, SELECT_PRESCALE_VALUE pwm_prescale)
 {
-    pwm_control_form.pwm_channel_address = pwm_channel_address;
+    // [DDD-PWM-9]
+    // TODO : 50Hz 주기의 PWM 파형에 대한 셋팅 정보를 저장할 control form을 공간을 만든다.
     pwm_control_form.compare_output_mode = compare_output_mode;
     pwm_control_form.wave_generation_mode = wave_generation_mode;
     pwm_control_form.pwm_prescale = pwm_prescale;
@@ -12,8 +13,7 @@ void set_pwm_control_form(PWM_CHANNEL_ADDRESS pwm_channel_address, COMPARE_OUTPU
 
 struct _pwm_request convert_pwm_control_data(struct _pwm_control_form pwm_control_form)
 {
-    pwm_request.pwm_channel_address = (volatile unsigned char *)pwm_control_form.pwm_channel_address;
-    pwm_request.compare_output_value = (pwm_control_form.compare_output_mode<<COMPARE_OUTPUT_BIT_SHIFT);
+    pwm_request.compare_output_value = pwm_control_form.compare_output_mode;
     pwm_request.wave_generation_value = pwm_control_form.wave_generation_mode;
     pwm_request.pwm_prescale_value = pwm_control_form.pwm_prescale;
 

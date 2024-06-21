@@ -13,6 +13,8 @@ void set_pwm_control_form(TC16_COMPARE_OUTPUT_MODE compare_output_mode, TC16_WAV
 
 struct _pwm_request convert_pwm_control_data(struct _pwm_control_form pwm_control_form)
 {
+    // [DDD-PWM-10]
+    // TODO : control form에 저장되어 있는 16bit fast pwm mode 정보 값을 request form으로 변환한다.
     pwm_request.compare_output_value = pwm_control_form.compare_output_mode;
     pwm_request.wave_generation_value = pwm_control_form.wave_generation_mode;
     pwm_request.pwm_prescale_value = pwm_control_form.pwm_prescale;

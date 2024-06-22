@@ -57,13 +57,14 @@ int main(void)
 /* 240621 Code Revision */
 #if 1
     // [DDD-PWM-9]
-    // TODO : control form에 50Hz PWM 파형을 생성하기 위한 
+    // TODO : control form에 50Hz PWM 파형을 생성하기 위한
     //        compare output mode, wave generation mode, precale 정보를 전달한다.
     set_pwm_control_form(NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, PRESCALE_8);
     
     // [DDD-PWM-8]
-    // TODO : 서보모터의 각도를 90도 회전하는 명령을 PWM Service에 요청한다.
-    pwm_service_call_table[ROTATE_SERVO_90_DEGREES](
+    // TODO : 개발자는 SG90 서보모터를 동작시키기 위해
+    //        PWM를 설정해야 하는데, 이 때 PWM Setting을 Service에 요청하는 코드를 작성한다.
+    pwm_service_call_table[PWM_SETTING_SG90_SERVO_MOTOR](
         convert_pwm_control_data(pwm_control_form)
     );
 
@@ -77,18 +78,6 @@ int main(void)
 
     for(;;)
     {
-        // [DDD-PWM-8]
-        //  TODO : Developer can change status of LED.
-
-		// set_led_control_form(LED_STATUS_OFF);
-		// led_service_call_table[LED_OFF](
-        //     convert_led_control_data(led_control_form));
-        // _delay_ms(500);
-        // set_led_control_form(LED_STATUS_ON);
-		// led_service_call_table[LED_ON](
-        //     convert_led_control_data(led_control_form));
-        // _delay_ms(500);
-
         OCR1A = 1000;
         _delay_ms(1000);
         OCR1A = 3000;

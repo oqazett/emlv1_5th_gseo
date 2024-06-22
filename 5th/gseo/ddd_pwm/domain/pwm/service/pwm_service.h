@@ -4,10 +4,10 @@
 #include "request/pwm_request.h"
 
 enum _pwm_domain_service{
-    ROTATE_SERVO_90_DEGREES
+    PWM_SETTING_SG90_SERVO_MOTOR
 };
 
-void rotate_servo_90_degrees (struct _pwm_request);
+void pwm_setting_sg90_servo_motor (struct _pwm_request);
 
 
 

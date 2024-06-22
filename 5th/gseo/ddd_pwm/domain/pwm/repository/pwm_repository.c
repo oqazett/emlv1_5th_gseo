@@ -82,7 +82,7 @@ void set_prescale(struct _pwm_request pwm_request){
     }
 }
 
-void set_rotate_servo_90_degrees(struct _pwm_request pwm_request){
+void set_pwm_spec_for_sg90_servo_motor(struct _pwm_request pwm_request){
     
     set_compare_output_mode(pwm_request);
     set_wave_generation_mode(pwm_request);

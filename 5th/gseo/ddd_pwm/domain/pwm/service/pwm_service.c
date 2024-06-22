@@ -4,8 +4,8 @@
 #include "../repository/pwm_repository_table.h"
 
 
-void rotate_servo_90_degrees (struct _pwm_request pwm_request)
+void pwm_setting_sg90_servo_motor (struct _pwm_request pwm_request)
 {
-    printf("\n ROTATE THE SERVO MOTOR 90 DEGREES\n");
-    pwm_repository_call_table[SET_ROTATE_SERVO_90_DEGREES](pwm_request);
+    printf("\n PWM SETTING FOR SG90 SERVO MOTOR [PWM SERVICE]\n");
+    pwm_repository_call_table[SET_PWM_SPEC_FOR_SG90_SERVO_MOTOR](pwm_request);
 }

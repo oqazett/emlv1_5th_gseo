@@ -68,8 +68,6 @@ int main(void)
         convert_pwm_control_data(pwm_control_form)
     );
 
-    // [DDD-PWM-0]
-    // TODO : 개발자는 PWM 출력으로 사용 할 PIN을 PB1로 사용한다.
     set_pin_control_form(PIN_PB1, PIN_OUTPUT_MODE);
     pin_service_call_table[PIN_DIRECTION] (
         convert_pin_control_data(pin_control_form)

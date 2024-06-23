@@ -2,7 +2,9 @@
 #include "../../pin/global_pin_map.h"
 #include <stdio.h>
 
-void set_pwm_control_form(TC16_COMPARE_OUTPUT_MODE compare_output_mode, TC16_WAVE_GENERATION_MODE wave_generation_mode, SELECT_PRESCALE_VALUE pwm_prescale)
+void set_pwm_control_form(TC16_COMPARE_OUTPUT_MODE compare_output_mode,
+                          TC16_WAVE_GENERATION_MODE wave_generation_mode,
+                          SELECT_PRESCALE_VALUE pwm_prescale)
 {
     // [DDD-PWM-9]
     // TODO : 50Hz 주기의 PWM 파형에 대한 셋팅 정보를 저장할 control form을 공간을 만든다.

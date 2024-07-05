@@ -17,25 +17,7 @@ void set_wave_generation_mode(struct _pwm_request pwm_request){
 }
 
 void set_prescale(struct _pwm_request pwm_request){
-    switch(pwm_request.pwm_prescale_value){
-        case 0:
-            break;
-        case 1:
-            break;
-        case 2:
-            TCCR1B |= (1<<CS11); //분주율 8, 2MHz
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
-    }
+    tc16_prescale_mode_table[pwm_request.pwm_prescale_value]();
 }
 
 void set_pwm_spec_for_sg90_servo_motor(struct _pwm_request pwm_request){
@@ -72,6 +54,18 @@ const TC16_wave_generation_mode_handler tc16_wave_generation_mode_table[] = {
     TC16_wave_generation_mode_value_13,
     TC16_wave_generation_mode_value_14,
     TC16_wave_generation_mode_value_15
+
+};
+
+const TC16_prescale_handler tc16_prescale_mode_table[] = {
+    TC16_prescale_mode_value_0,
+    TC16_prescale_mode_value_1,
+    TC16_prescale_mode_value_2,
+    TC16_prescale_mode_value_3,
+    TC16_prescale_mode_value_4,
+    TC16_prescale_mode_value_5,
+    TC16_prescale_mode_value_6,
+    TC16_prescale_mode_value_7
 
 };
 
@@ -142,5 +136,34 @@ void TC16_wave_generation_mode_value_14(void){
     printf(" Done!\n");
 }
 void TC16_wave_generation_mode_value_15(void){
+
+}
+
+void TC16_prescale_mode_value_0(void){
+
+}
+void TC16_prescale_mode_value_1(void){
+
+}
+void TC16_prescale_mode_value_2(void){
+    printf("[PWM REPOSITORY] Presale value : 8 (2MHz) settings...");
+    TCCR1B |= (1<<CS11); //분주율 8, 2MHz
+
+    printf(" Done!\n");
+
+}
+void TC16_prescale_mode_value_3(void){
+
+}
+void TC16_prescale_mode_value_4(void){
+
+}
+void TC16_prescale_mode_value_5(void){
+
+}
+void TC16_prescale_mode_value_6(void){
+
+}
+void TC16_prescale_mode_value_7(void){
 
 }

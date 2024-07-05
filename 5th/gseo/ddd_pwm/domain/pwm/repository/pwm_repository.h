@@ -3,6 +3,7 @@
 
 #include "../service/request/pwm_request.h"
 
+#define NUMBER_OF_TC16_COMPARE_OUTPUT_MODE      4
 #define NUMBER_OF_TC16_WAVE_GENERATION_MODE     16
 
 enum _pwm_domain_repository{
@@ -13,13 +14,22 @@ void set_compare_output_mode(struct _pwm_request);
 void set_wave_generation_mode(struct _pwm_request);
 void set_prescale(struct _pwm_request);
 
+typedef void (* TC16_compare_output_mode_handler) (void);
 typedef void (* TC16_wave_generation_mode_handler) (void);
 
+
+const TC16_compare_output_mode_handler \
+      tc16_compare_output_mode_table[NUMBER_OF_TC16_COMPARE_OUTPUT_MODE];
 const TC16_wave_generation_mode_handler \
       tc16_wave_generation_mode_table[NUMBER_OF_TC16_WAVE_GENERATION_MODE];
 
 void set_pwm_spec_for_sg90_servo_motor (struct _pwm_request);
 
+
+void TC16_compare_output_mode_value_0(void);
+void TC16_compare_output_mode_value_1(void);
+void TC16_compare_output_mode_value_2(void);
+void TC16_compare_output_mode_value_3(void);
 
 void TC16_wave_generation_mode_value_0(void);
 void TC16_wave_generation_mode_value_1(void);

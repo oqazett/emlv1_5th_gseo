@@ -83,7 +83,7 @@ void TC16_compare_output_mode_value_1(void){
 
 }
 void TC16_compare_output_mode_value_2(void){
-    printf("[PWM REPOSITORY] Compare Output Mode : non-inserting mode settings...");
+    printf("[PWM REPOSITORY] Compare Output Mode : non-inverting mode settings...");
     TCCR1A |= (1<<COM1A1); //비반전 모드
 
     printf(" Done!\n");

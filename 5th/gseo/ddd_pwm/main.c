@@ -59,7 +59,7 @@ int main(void)
     // [DDD-PWM-9]
     // TODO : control form에 50Hz PWM 파형을 생성하기 위한
     //        compare output mode, wave generation mode, precale 정보를 전달한다.
-    set_pwm_control_form(NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, PRESCALE_8);
+    set_pwm_control_form(PWM_TIMER_COUNTER_1, NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, PRESCALE_8);
     
     // [DDD-PWM-8]
     // TODO : 개발자는 SG90 서보모터를 동작시키기 위해

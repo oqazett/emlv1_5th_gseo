@@ -69,6 +69,9 @@ const TC16_prescale_handler tc16_prescale_mode_table[] = {
 
 };
 
+/* *****************************************************
+    ATmega328p Timer/Counter 1 - Compare Output Mode
+***************************************************** */
 
 void TC16_compare_output_mode_value_0(void){
 
@@ -85,6 +88,10 @@ void TC16_compare_output_mode_value_2(void){
 void TC16_compare_output_mode_value_3(void){
 
 }
+
+/* *****************************************************
+    ATmega328p Timer/Counter 1 - Wave Generation Mode
+***************************************************** */
 
 void TC16_wave_generation_mode_value_0(void){
 
@@ -138,6 +145,10 @@ void TC16_wave_generation_mode_value_14(void){
 void TC16_wave_generation_mode_value_15(void){
 
 }
+
+/* ***********************************************
+    ATmega328p Timer/Counter 1 - Prescale Mode
+*********************************************** */
 
 void TC16_prescale_mode_value_0(void){
 

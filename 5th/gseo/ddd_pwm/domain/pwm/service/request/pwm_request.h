@@ -5,6 +5,7 @@
 
 struct _pwm_request
 {
+    volatile unsigned char *hw_pwm_address;
     uint8_t compare_output_value;
     uint8_t wave_generation_value;
     uint8_t pwm_prescale_value;

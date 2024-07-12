@@ -163,10 +163,11 @@ void TC16_prescale_mode_value_1(struct _pwm_request pwm_request){
 }
 void TC16_prescale_mode_value_2(struct _pwm_request pwm_request){
     printf("[PWM REPOSITORY] Presale value : 8 (2MHz) settings...");
-    TCCR1B |= (1<<CS11); //분주율 8, 2MHz
-
+    *(volatile unsigned char*)(pwm_request.hw_pwm_address + TIMER_COUNTER_CONTROL_REGISTER_B) |= \
+                                                    pwm_request.pwm_prescale_value;
+    
     printf(" Done!\n");
-
+    printf("[PWM REPOSITORY] TCCR1B = 0x%x\n", TCCR1B);
 }
 void TC16_prescale_mode_value_3(struct _pwm_request pwm_request){
 

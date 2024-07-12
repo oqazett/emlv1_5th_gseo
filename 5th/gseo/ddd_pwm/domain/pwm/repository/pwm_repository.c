@@ -26,7 +26,7 @@ void set_pwm_spec_for_sg90_servo_motor(struct _pwm_request pwm_request){
     set_wave_generation_mode(pwm_request);
     set_prescale(pwm_request);
 
-    ICR1 = 40000; // 20ms period
+    ICR1 = SG90_PWM_PERIOD_TIME_20MS; // 20ms period
 }
 
 const TC16_compare_output_mode_handler tc16_compare_output_mode_table[] = {

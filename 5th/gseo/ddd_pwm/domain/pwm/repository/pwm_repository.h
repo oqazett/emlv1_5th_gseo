@@ -10,6 +10,8 @@
 #define TIMER_COUNTER_CONTROL_REGISTER_A       0
 #define TIMER_COUNTER_CONTROL_REGISTER_B       1
 
+#define SG90_PWM_PERIOD_TIME_20MS              40000
+
 enum _pwm_domain_repository{
     SET_PWM_SPEC_FOR_SG90_SERVO_MOTOR
 };

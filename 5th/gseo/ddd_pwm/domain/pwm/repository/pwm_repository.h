@@ -7,6 +7,8 @@
 #define NUMBER_OF_TC16_WAVE_GENERATION_MODE     16
 #define NUMBER_OF_TC16_PRESCALE_MODE            8
 
+#define TIMER_COUNTER_CONTROL_REGISTER_A       0
+#define TIMER_COUNTER_CONTROL_REGISTER_B       1
 
 enum _pwm_domain_repository{
     SET_PWM_SPEC_FOR_SG90_SERVO_MOTOR

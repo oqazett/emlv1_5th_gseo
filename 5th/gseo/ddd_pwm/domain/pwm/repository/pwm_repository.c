@@ -80,11 +80,12 @@ void TC16_compare_output_mode_value_1(struct _pwm_request pwm_request){
 
 }
 void TC16_compare_output_mode_value_2(struct _pwm_request pwm_request){
-    printf("[PWM REPOSITORY] Compare Output Mode : non-inverting mode settings...");
-    *(volatile unsigned char*)pwm_request.hw_pwm_address = (pwm_request.compare_output_value<<6);
+    printf("[PWM REPOSITORY] Compare Output Mode : non-inverting mode settings..");
+    *(volatile unsigned char*)pwm_request.hw_pwm_address |= (pwm_request.compare_output_value<<6);
     // TCCR1A |= (1<<COM1A1); //비반전 모드
 
     printf(" Done!\n");
+    printf("[PWM REPOSITORY] TCCR1A = 0x%x\n", TCCR1A);
 }
 void TC16_compare_output_mode_value_3(struct _pwm_request pwm_request){
 

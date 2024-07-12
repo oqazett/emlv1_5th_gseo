@@ -82,8 +82,7 @@ void TC16_compare_output_mode_value_1(struct _pwm_request pwm_request){
 void TC16_compare_output_mode_value_2(struct _pwm_request pwm_request){
     printf("[PWM REPOSITORY] Compare Output Mode : non-inverting mode settings..");
     *(volatile unsigned char*)pwm_request.hw_pwm_address |= (pwm_request.compare_output_value<<6);
-    // TCCR1A |= (1<<COM1A1); //비반전 모드
-
+    
     printf(" Done!\n");
     printf("[PWM REPOSITORY] TCCR1A = 0x%x\n", TCCR1A);
 }
@@ -139,10 +138,14 @@ void TC16_wave_generation_mode_value_13(struct _pwm_request pwm_request){
 }
 void TC16_wave_generation_mode_value_14(struct _pwm_request pwm_request){
     printf("[PWM REPOSITORY] Wave Generation Mode : Fast PWM, TOP : ICR1 settings...");
-    TCCR1A |= (1<<WGM11);
-    TCCR1B |= (1<<WGM12) | (1<<WGM13); //고속 PWM 모드, TOP : ICR1
-
+    *(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_A) |= \
+                                                    (pwm_request.wave_generation_value & 0x3);
+    *(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_B) |= \
+                                                    (((pwm_request.wave_generation_value>>2) & 0x3)<<3);
+    
     printf(" Done!\n");
+    printf("[PWM REPOSITORY] TCCR1A = 0x%x\n", TCCR1A);
+    printf("[PWM REPOSITORY] TCCR1B = 0x%x\n", TCCR1B);
 }
 void TC16_wave_generation_mode_value_15(struct _pwm_request pwm_request){
 

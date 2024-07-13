@@ -29,6 +29,20 @@ void set_pwm_spec_for_sg90_servo_motor(struct _pwm_request pwm_request){
     ICR1 = SG90_PWM_PERIOD_TIME_20MS; // 20ms period
 }
 
+void set_pwm_spec_for_rotate_sg90_90_degree_cw(struct _pwm_request pwm_request){
+    printf("[PWM REPOSITORY] ROTATE SG90 MOTOR 90 DEGREE CW\n");
+
+    OCR1A = 1000;
+    
+}
+
+void set_pwm_spec_for_rotate_sg90_90_degree_ccw(struct _pwm_request pwm_request){
+    printf("[PWM REPOSITORY] ROTATE SG90 MOTOR 90 DEGREE CCW\n");
+
+    OCR1A = 3000;
+    
+}
+
 const TC16_compare_output_mode_handler tc16_compare_output_mode_table[] = {
     TC16_compare_output_mode_value_0,
     TC16_compare_output_mode_value_1,

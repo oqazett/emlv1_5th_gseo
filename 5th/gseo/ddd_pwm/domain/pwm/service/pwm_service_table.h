@@ -6,7 +6,9 @@
 typedef void (* pwm_service_call_ptr_t) (struct _pwm_request);
 
 const pwm_service_call_ptr_t pwm_service_call_table[] = {
-    pwm_setting_sg90_servo_motor
+    pwm_setting_sg90_servo_motor,
+    rotate_sg90_motor_90_degree_cw,
+    rotate_sg90_motor_90_degree_ccw
 };
 
 #endif

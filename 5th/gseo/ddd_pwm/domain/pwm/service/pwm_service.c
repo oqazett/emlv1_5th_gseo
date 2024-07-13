@@ -9,3 +9,15 @@ void pwm_setting_sg90_servo_motor (struct _pwm_request pwm_request)
     printf("\n[PWM SERVICE] PWM SETTING FOR SG90 SERVO MOTOR\n");
     pwm_repository_call_table[SET_PWM_SPEC_FOR_SG90_SERVO_MOTOR](pwm_request);
 }
+
+void rotate_sg90_motor_90_degree_cw (struct _pwm_request pwm_request)
+{
+    printf("\n[PWM SERVICE] ROTATE SG90 MOTOR 90 DEGREE CW\n");
+    pwm_repository_call_table[SET_PWM_SPEC_FOR_ROTATE_SG90_90_DEGREE_CW](pwm_request);
+}
+
+void rotate_sg90_motor_90_degree_ccw (struct _pwm_request pwm_request)
+{
+    printf("\n[PWM SERVICE] ROTATE SG90 MOTOR 90 DEGREE CCW\n");
+    pwm_repository_call_table[SET_PWM_SPEC_FOR_ROTATE_SG90_90_DEGREE_CCW](pwm_request);
+}

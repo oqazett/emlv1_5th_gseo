@@ -59,9 +59,17 @@ int main(void)
 
     for(;;)
     {
-        OCR1A = 1000;
+        pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CW](
+            convert_pwm_control_data(pwm_control_form)
+        );
+
+        // OCR1A = 1000;
         _delay_ms(1000);
-        OCR1A = 3000;
+
+        pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CCW](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        // OCR1A = 3000;
         _delay_ms(1000);
 	}
 

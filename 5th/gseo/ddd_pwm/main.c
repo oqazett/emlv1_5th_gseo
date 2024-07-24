@@ -24,6 +24,8 @@
 
 #define F_CPU       16000000L
 
+#define USE_SG90_SERVO_MOTOR    0
+
 int main(void)
 {
     //  [DDD-PWM-6]
@@ -38,7 +40,7 @@ int main(void)
     printf("4. Software Design : Domain-Driven Design.\r\n\n");
 
 /* 240621 Code Revision */
-#if 1
+#if USE_SG90_SERVO_MOTOR
     // [DDD-PWM-9]
     // TODO : control form에 50Hz PWM 파형을 생성하기 위한
     //        compare output mode, wave generation mode, precale 정보를 전달한다.
@@ -59,18 +61,17 @@ int main(void)
 
     for(;;)
     {
-        pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CW](
-            convert_pwm_control_data(pwm_control_form)
-        );
+        if(USE_SG90_SERVO_MOTOR==1){
+            pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CW](
+                convert_pwm_control_data(pwm_control_form)
+            );
+            _delay_ms(1000);
 
-        // OCR1A = 1000;
-        _delay_ms(1000);
-
-        pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CCW](
-            convert_pwm_control_data(pwm_control_form)
-        );
-        // OCR1A = 3000;
-        _delay_ms(1000);
+            pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CCW](
+                convert_pwm_control_data(pwm_control_form)
+            );
+            _delay_ms(1000);
+        }
 	}
 
 }

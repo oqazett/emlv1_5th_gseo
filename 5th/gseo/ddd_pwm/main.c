@@ -25,6 +25,7 @@
 #define F_CPU       16000000L
 
 #define USE_SG90_SERVO_MOTOR    0
+#define USE_DC_MOTOR            1
 
 int main(void)
 {
@@ -39,7 +40,7 @@ int main(void)
     printf("3. Peripheral      : PWM\r\n");
     printf("4. Software Design : Domain-Driven Design.\r\n\n");
 
-/* 240621 Code Revision */
+/* 240724 SG90 SERVO MOTOR */
 #if USE_SG90_SERVO_MOTOR
     // [DDD-PWM-9]
     // TODO : control form에 50Hz PWM 파형을 생성하기 위한
@@ -59,6 +60,10 @@ int main(void)
     );
 #endif
 
+/* 240724 DC MOTOR */
+#if USE_DC_MOTOR
+
+#endif
     for(;;)
     {
         if(USE_SG90_SERVO_MOTOR==1){
@@ -72,6 +77,9 @@ int main(void)
             );
             _delay_ms(1000);
         }
-	}
 
+        if(USE_DC_MOTOR==1){
+            
+        }
+	}
 }

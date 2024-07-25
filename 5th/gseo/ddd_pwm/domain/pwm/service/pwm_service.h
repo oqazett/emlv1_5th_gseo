@@ -6,7 +6,8 @@
 enum _pwm_domain_service{
     PWM_SETTING_SG90_SERVO_MOTOR,
     ROTATE_SG90_MOTOR_90_DEGREE_CW,
-    ROTATE_SG90_MOTOR_90_DEGREE_CCW
+    ROTATE_SG90_MOTOR_90_DEGREE_CCW,
+    PWM_SETTING_DC_MOTOR
 };
 
 void pwm_setting_sg90_servo_motor (struct _pwm_request);

@@ -14,6 +14,7 @@ void pwm_setting_sg90_servo_motor (struct _pwm_request);
 void rotate_sg90_motor_90_degree_cw (struct _pwm_request);
 void rotate_sg90_motor_90_degree_ccw (struct _pwm_request);
 
+void pwm_setting_dc_motor (struct _pwm_request);
 
 
 #endif

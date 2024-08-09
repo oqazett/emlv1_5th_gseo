@@ -7,16 +7,16 @@
 struct _pwm_control_form
 {
     PWM_TIMER_COUNTER_NUMBER    pwm_timer_counter_number;
-    TC16_COMPARE_OUTPUT_MODE    compare_output_mode;
-    TC16_WAVE_GENERATION_MODE   wave_generation_mode;
+    COMPARE_OUTPUT_MODE    compare_output_mode;
+    WAVE_GENERATION_MODE   wave_generation_mode;
     SELECT_PRESCALE_VALUE       pwm_prescale;
 };
 
 struct _pwm_control_form pwm_control_form;
 
 void set_pwm_control_form(PWM_TIMER_COUNTER_NUMBER  pwm_timer_counter_nunmber,
-                          TC16_COMPARE_OUTPUT_MODE  compare_output_mode, 
-                          TC16_WAVE_GENERATION_MODE wave_generation_mode, 
+                          COMPARE_OUTPUT_MODE  compare_output_mode, 
+                          WAVE_GENERATION_MODE wave_generation_mode, 
                           SELECT_PRESCALE_VALUE     pwm_prescale);
                           
 struct _pwm_request convert_pwm_control_data(struct _pwm_control_form pwm_control_form);

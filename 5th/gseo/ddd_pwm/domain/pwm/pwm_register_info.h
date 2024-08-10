@@ -16,6 +16,12 @@ enum _PWM_TIMER_COUNTER_NUMBER
     PWM_CHANNEL_END
 };
 
+typedef enum _OUTPUT_COMPARE_PIN OUTPUT_COMPARE_PIN;
+enum _OUTPUT_COMPARE_PIN
+{
+    OCxA    =   6,
+    OCxB    =   4
+};
 
 typedef enum _COMPARE_OUTPUT_MODE COMPARE_OUTPUT_MODE;
 enum _COMPARE_OUTPUT_MODE
@@ -51,18 +57,33 @@ enum _WAVE_GENERATION_MODE
     WAVE_GENERATION_MODE_END
 };
 
-typedef enum _SELECT_PRESCALE_VALUE SELECT_PRESCALE_VALUE;
-enum _SELECT_PRESCALE_VALUE
-{
-    NO_CLOCK_SOURCE                        =   0,
-    PRESCALE_1                          =   1,
-    PRESCALE_8                          =   2,
-    PRESCALE_64                         =   3,
-    PRESCALE_256                        =   4,
-    PRESCALE_1024                       =   5,
-    EXTERNAL_CLOCK_SOURCE_T1_RISISNG    =   6,
-    EXTERNAL_CLOCK_SOURCE_T1_FALLING    =   7,
+typedef enum _TC1_SELECT_PRESCALE_VALUE TC1_SELECT_PRESCALE_VALUE;
+enum TC1_SELECT_PRESCALE_VALUE
+{                                               // *** If Timer/Counter 0 or 2 ***
+    TC1_NO_CLOCK_SOURCE                     =   0,  // 0 : NO_CLOCK_SOURCE      //
+    TC1_PRESCALE_1                          =   1,  //
+    TC1_PRESCALE_8                          =   2,
+    TC1_PRESCALE_64                         =   3,
+    TC1_PRESCALE_256                        =   4,
+    TC1_PRESCALE_1024                       =   5,
+    TC1_EXTERNAL_CLOCK_SOURCE_T1_RISISNG    =   6,
+    TC1_EXTERNAL_CLOCK_SOURCE_T1_FALLING    =   7,
 
     PRESCALE_SELECT_BIT_END
+};
+
+typedef enum _TC2_SELECT_PRESCALE_VALUE TC2_SELECT_PRESCALE_VALUE;
+enum TC2_SELECT_PRESCALE_VALUE
+{
+    TC2_NO_CLOCK_SOURCE                     =   0,
+    TC2_PRESCALE_1                          =   1,
+    TC2_PRESCALE_8                          =   2,
+    TC2_PRESCALE_32                         =   3,
+    TC2_PRESCALE_64                         =   4,
+    TC2_PRESCALE_128                        =   5,
+    TC2_PRESCALE_256                        =   6,
+    TC2_PRESCALE_1024                       =   7,
+
+    TC2_PRESCALE_SELECT_BIT_END
 };
 #endif

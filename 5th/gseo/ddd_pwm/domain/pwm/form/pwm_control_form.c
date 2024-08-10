@@ -5,8 +5,8 @@
 void set_pwm_control_form(PWM_TIMER_COUNTER_NUMBER   pwm_timer_counter_number,
                           OUTPUT_COMPARE_PIN    output_compare_pin,
                           COMPARE_OUTPUT_MODE   compare_output_mode,
-                          WAVE_GENERATION_MODE  wave_generation_mode,
-                          uint8_t      pwm_prescale)
+                          uint8_t               wave_generation_mode,
+                          uint8_t               pwm_prescale)
 {
     // [DDD-PWM-9]
     // TODO : 50Hz 주기의 PWM 파형에 대한 셋팅 정보를 저장할 control form을 공간을 만든다.

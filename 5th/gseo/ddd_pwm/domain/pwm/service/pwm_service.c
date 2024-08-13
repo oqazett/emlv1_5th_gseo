@@ -27,3 +27,8 @@ void pwm_setting_dc_motor (struct _pwm_request pwm_request)
     printf("\n[PWM SERVICE] PWM SETTING FOR DC MOTOR\n");
     pwm_repository_call_table[SET_PWM_SPEC_FOR_ROTATE_DC_MOTOR](pwm_request);
 }
+
+void stop_rotating_dc_motor (struct _pwm_request pwm_request)
+{
+    printf("\n[PWM SERVICE] STOP ROTATING DC MOTOR\n");
+}

@@ -9,7 +9,8 @@ const pwm_service_call_ptr_t pwm_service_call_table[] = {
     pwm_setting_sg90_servo_motor,
     rotate_sg90_motor_90_degree_cw,
     rotate_sg90_motor_90_degree_ccw,
-    pwm_setting_dc_motor
+    pwm_setting_dc_motor,
+    stop_rotating_dc_motor
 };
 
 #endif

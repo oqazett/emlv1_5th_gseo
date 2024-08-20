@@ -90,6 +90,12 @@ void set_pwm_spec_for_stop_rotating_dc_motor (struct _pwm_request pwm_request){
     PORTD |= 0b00110000;    // PD4:1 PD5:1  모터 정지
 }
 
+void set_pwm_spec_for_rotate_dc_motor_cw (struct _pwm_request pwm_request){
+    PORTD &= 0b11011111;       // PD5 : 0
+	PORTD |= 0b00010000;       // 정방향 회전 PD4:1  PD5: 0
+	OCR2B = 127;               // 0.5ms 되면 비교 일치 발생 될 수 있도록 한다.
+}
+
 const compare_output_mode_handler compare_output_mode_table[] = {
     compare_output_mode_value_0,
     compare_output_mode_value_1,

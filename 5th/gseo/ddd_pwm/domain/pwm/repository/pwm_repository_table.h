@@ -11,7 +11,8 @@ const pwm_repository_call_ptr_t pwm_repository_call_table[] = {
     set_pwm_spec_for_rotate_sg90_90_degree_ccw,
 
     set_pwm_spec_for_dc_motor,
-    set_pwm_spec_for_stop_rotating_dc_motor
+    set_pwm_spec_for_stop_rotating_dc_motor,
+    set_pwm_spec_for_rotate_dc_motor_cw
 };
 
 #endif

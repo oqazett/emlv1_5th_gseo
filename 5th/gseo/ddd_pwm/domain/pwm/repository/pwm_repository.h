@@ -19,7 +19,8 @@ enum _pwm_domain_repository{
     SET_PWM_SPEC_FOR_ROTATE_SG90_90_DEGREE_CCW,
     SET_PWM_SPEC_FOR_DC_MOTOR,
     SET_PWM_SPEC_FOR_STOP_ROTATING_DC_MOTOR,
-    SET_PWM_SPEC_FOR_ROTATE_DC_MOTOR_CW
+    SET_PWM_SPEC_FOR_ROTATE_DC_MOTOR_CW,
+    SET_PWM_SPEC_FOR_ROTATE_DC_MOTOR_CCW
 
 };
 
@@ -47,6 +48,7 @@ void set_pwm_spec_for_rotate_sg90_90_degree_ccw (struct _pwm_request);
 void set_pwm_spec_for_dc_motor (struct _pwm_request);
 void set_pwm_spec_for_stop_rotating_dc_motor (struct _pwm_request);
 void set_pwm_spec_for_rotate_dc_motor_cw (struct _pwm_request);
+void set_pwm_spec_for_rotate_dc_motor_ccw (struct _pwm_request);
 
 void compare_output_mode_value_0(struct _pwm_request);
 void compare_output_mode_value_1(struct _pwm_request);

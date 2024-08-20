@@ -96,6 +96,12 @@ void set_pwm_spec_for_rotate_dc_motor_cw (struct _pwm_request pwm_request){
 	OCR2B = 127;               // 0.5ms 되면 비교 일치 발생 될 수 있도록 한다.
 }
 
+void set_pwm_spec_for_rotate_dc_motor_ccw (struct _pwm_request pwm_request){
+    PORTD &= 0b11101111;
+	PORTD |= 0b00100000;       // 역회전 PD4: 0 PD5: 1
+	OCR2B = 127;               // 0.5ms 되면 비교 일치 발생 될 수 있도록 한다.
+}
+
 const compare_output_mode_handler compare_output_mode_table[] = {
     compare_output_mode_value_0,
     compare_output_mode_value_1,

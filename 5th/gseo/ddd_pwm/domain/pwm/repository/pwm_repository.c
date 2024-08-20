@@ -25,7 +25,7 @@ void set_wave_generation_mode(struct _pwm_request pwm_request){
                                                         (pwm_request.wave_generation_value & 0x3);
         *(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_B) |= \
                                                         (((pwm_request.wave_generation_value>>2) & 0x1)<<3);
-        
+
     }
     else {
 
@@ -69,16 +69,12 @@ void set_pwm_spec_for_sg90_servo_motor(struct _pwm_request pwm_request){
 
 void set_pwm_spec_for_rotate_sg90_90_degree_cw(struct _pwm_request pwm_request){
     printf("[PWM REPOSITORY] ROTATE SG90 MOTOR 90 DEGREE CW\n");
-
     OCR1A = 1000;
-    
 }
 
 void set_pwm_spec_for_rotate_sg90_90_degree_ccw(struct _pwm_request pwm_request){
     printf("[PWM REPOSITORY] ROTATE SG90 MOTOR 90 DEGREE CCW\n");
-
     OCR1A = 3000;
-    
 }
 
 void set_pwm_spec_for_dc_motor(struct _pwm_request pwm_request){
@@ -89,6 +85,10 @@ void set_pwm_spec_for_dc_motor(struct _pwm_request pwm_request){
 
 }
 
+void set_pwm_spec_for_stop_rotating_dc_motor (struct _pwm_request pwm_request){
+    OCR2B = 0;              // 모터정지
+    PORTD |= 0b00110000;    // PD4:1 PD5:1  모터 정지
+}
 
 const compare_output_mode_handler compare_output_mode_table[] = {
     compare_output_mode_value_0,
@@ -142,7 +142,7 @@ void compare_output_mode_value_1(struct _pwm_request pwm_request){
 void compare_output_mode_value_2(struct _pwm_request pwm_request){
     printf("[PWM REPOSITORY] Compare Output Mode settings..\n");
     *(volatile unsigned char*)pwm_request.hw_pwm_address |= (pwm_request.compare_output_value<<pwm_request.output_compare_pin);
-    
+
     printf("[PWM REPOSITORY] TCCR%dA = 0x%x\n", pwm_request.timer_counter_channel,*(volatile unsigned char*)pwm_request.hw_pwm_address);
     printf("[PWM REPOSITORY] Compare Output Mode settings Done!\n");
 
@@ -211,7 +211,7 @@ void wave_generation_mode_value_14(struct _pwm_request pwm_request){
                                                         (pwm_request.wave_generation_value & 0x3);
         *(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_B) |= \
                                                         (((pwm_request.wave_generation_value>>2) & 0x1)<<3);
-        
+
     }
     else {
 
@@ -219,7 +219,7 @@ void wave_generation_mode_value_14(struct _pwm_request pwm_request){
 
     printf(" Done!\n");
     printf("[PWM REPOSITORY] TCCR%dA = 0x%x\n",pwm_request.timer_counter_channel,*(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_A));
-    printf("[PWM REPOSITORY] TCCR%dB = 0x%x\n",pwm_request.timer_counter_channel,(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_B));
+    printf("[PWM REPOSITORY] TCCR%dB = 0x%x\n",pwm_request.timer_counter_channel,*(volatile unsigned char*)(pwm_request.hw_pwm_address+TIMER_COUNTER_CONTROL_REGISTER_B));
 }
 void wave_generation_mode_value_15(struct _pwm_request pwm_request){
 

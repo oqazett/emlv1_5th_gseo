@@ -49,7 +49,7 @@ int main(void)
     // TODO : control form에 50Hz PWM 파형을 생성하기 위한
     //        compare output mode, wave generation mode, precale 정보를 전달한다.
     set_pwm_control_form(PWM_TIMER_COUNTER_1, NON_INVERTING_MODE, FAST_PWM_TOP_ICR1, TC1_PRESCALE_8);
-    
+
     // [DDD-PWM-8]
     // TODO : 개발자는 SG90 서보모터를 동작시키기 위해
     //        PWM를 설정해야 하는데, 이 때 PWM Setting을 Service에 요청하는 코드를 작성한다.
@@ -69,7 +69,7 @@ int main(void)
 //  TODO : control form에 250KHz PWM 파형을 생성하기 위한
 //         compare output mode, wave generation mode, precale 정보를 전달한다.
     set_pwm_control_form(PWM_TIMER_COUNTER_2, OCxB ,NON_INVERTING_MODE, TC2_FAST_PWM_TOP_0xFF, TC2_PRESCALE_64);
-    
+
 // [DDD-PWM-9]
 // TODO : 개발자는 DC모터를 동작시키기 위해
 //        PWM를 설정해야 하는데, 이 때 PWM Setting 정보들을 Service에 요청하는 코드를 작성한다.
@@ -92,53 +92,55 @@ int main(void)
         convert_pin_control_data(pin_control_form)
     );
 #endif
-/* Servo Motor Code */
-    // for(;;)
-    // {
-    //     if(USE_SG90_SERVO_MOTOR==1){
-    //         pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CW](
-    //             convert_pwm_control_data(pwm_control_form)
-    //         );
-    //         _delay_ms(1000);
 
-    //         pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CCW](
-    //             convert_pwm_control_data(pwm_control_form)
-    //         );
-    //         _delay_ms(1000);
-    //     }
+#if USE_SG90_SERVO_MOTOR
+    for(;;)
+    {
+        if(USE_SG90_SERVO_MOTOR==1){
+            pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CW](
+                convert_pwm_control_data(pwm_control_form)
+            );
+            _delay_ms(1000);
 
-    //     if(USE_DC_MOTOR==1){
-    //         OCR1A = 400;
-    //         _delay_ms(1000);
-    //     }
-	// }
+            pwm_service_call_table[ROTATE_SG90_MOTOR_90_DEGREE_CCW](
+                convert_pwm_control_data(pwm_control_form)
+            );
+            _delay_ms(1000);
+        }
 
+        if(USE_DC_MOTOR==1){
+            OCR1A = 400;
+            _delay_ms(1000);
+        }
+	}
+#endif
 // ********************************************************************
 
+#if USE_DC_MOTOR
     while(1)
 	{
-		OCR2B = 0;              // 모터정지  
-		PORTD |= 0b00110000;    // PD4:1 PD5:1  모터 정지
-		_delay_ms(DELAY);       // 2초 
-		
-		PORTD &= 0b11011111;       // PD5 : 0
-		PORTD |= 0b00010000;       // 정방향 회전 PD4:1  PD5: 0   
-		OCR2B = 127;        // 0.5ms 되면 비교 일치 발생 될 수 있도록 한다. 
-		_delay_ms(DELAY);   // 2초 
-		OCR2B = 255;        // 1ms    
-		_delay_ms(DELAY);   // 2초 
-	
-		OCR2B = 0;              // 모터 정지 	
-		PORTD |= 0b00110000;    // PD4:1 PD5:1  모터 정지
+        pwm_service_call_table[STOP_ROTATING_DC_MOTOR](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        _delay_ms(DELAY);
+
+        pwm_service_call_table[ROTATE_DC_MOTOR_CW](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        _delay_ms(DELAY);
+
+		pwm_service_call_table[STOP_ROTATING_DC_MOTOR](
+            convert_pwm_control_data(pwm_control_form)
+        );
+        _delay_ms(DELAY);
+
+        pwm_service_call_table[ROTATE_DC_MOTOR_CCW](
+            convert_pwm_control_data(pwm_control_form)
+        );
 		_delay_ms(DELAY);
-		PORTD &= 0b11101111;
-		PORTD |= 0b00100000;       // 역회전 PD4: 0 PD5: 1
-		OCR2B = 127;
-		_delay_ms(DELAY);
-		OCR2B = 255;
-		_delay_ms(DELAY);
-		 
+
 	}
+#endif
 	return 0;
 
 
